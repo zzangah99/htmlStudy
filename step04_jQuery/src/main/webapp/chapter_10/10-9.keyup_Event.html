@@ -8,11 +8,30 @@
 
 <script>
 	$(function(){
+		$("#pwd").keyup(function(){
+			if($("#pwd").val() != "" && $("#pwdConfirm").val() == ""){
+				$("#lblError").html("");
+			} else if($("#pwd").val() == "" && $("#pwdConfirm").val() == ""){
+				$("#pwdConfirm").html("");
+				$("#lblError").html("암호를 입력하시오.").css("color","black");
+			}
+			
+		});
+		
 		$("#pwdConfirm").keyup(function(){
+			if($("#pwd").val() == ""){
+				if($(this).val() == ""){
+					$("#lblError").html("암호를 입력하시오.").css("color","black");
+				}
+				return;
+			}
+			
 			//pwd와 pwdConfirm의 값이 다르면 div 영역에 비밀번호가 다르다고 출력
-			if($("#pwd").val() == $("#pwdConfirm").val()){
-				$("#lblError").html("비밀번호가 일치합니다");
-			} else $("#lblError").html("비밀번호가 일치하지 않습니다");
+			if($("#pwd").val() == $("#pwdConfirm").val() && $("#pwd").val() != ""){
+				$("#lblError").html("비밀번호가 일치합니다").css("color","black");
+			} else if($("#pwd").val() != $("#pwdConfirm").val()){
+				$("#lblError").html("비밀번호가 일치하지 않습니다").css("color","red");
+			}
 		});
 	});	
 </script>
