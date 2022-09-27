@@ -18,9 +18,15 @@
 				1) $.each(반복대상, function(index, item){})
 				2) $(selector).each(function(index, item){})
 			*/
+			
+			let str = "취미: ";
 			$(":checkbox:checked").each(function(index, item){
-				alert(index + " = " + item.value + " , " + $(item).val());
+				//alert(index + " = " + item.value + " , " + $(item).val());
+				str += item.value + " ";
 			});
+			str += "<br>성별: " + $(":radio:checked").val();
+			
+			$("div").html(str);
 		});
 	});
 </script>
