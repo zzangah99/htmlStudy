@@ -8,6 +8,7 @@
 
 <script>
 	$(document).ready(function(){
+		$("input").wrap("<span style = 'background-color:orange'>");
 		$(":button").click(function(){
 			//선택된 취미의 value 가져온다
 			//$(":checked").val();
@@ -25,6 +26,16 @@
 				str += item.value + " ";
 			});
 			str += "<br>성별: " + $(":radio:checked").val();
+			
+			//배열 선언
+			let arr = [1,3,"장희정",true];
+			$.each(arr, function(index, item){
+				alert(index + " = " + item);
+			});
+			
+			$(":checkbox").each(function(i, item){
+				alert(i + " = " + item.value);
+			});
 			
 			$("div").html(str);
 		});
