@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script src="../js/jquery-3.6.1.min.js"></script>
+
+<script>
+	$(function(){
+		$("select[name=job]").change(function(){
+			//선택된 value 가져오기 
+			//alert(this.value);
+			//alert($(this).val());
+			
+			//선택된 index --> selectedIndex
+			//alert(this.selectedIndex);
+			
+			//div 영역에서 선택된 값과 번지수를 출력
+			//단, 첫 번째 value=0이 선택된 경우는 출력하지 않는다
+			
+			if(this.selectedIndex != 0){
+				let str = "직업은 " + $(this).val() + " 선택된 번지수는 " + this.selectedIndex;
+				$("#result").html(str);
+			}
+		});
+	});	
+</script>
+</head>
+<body>
+<h1>change 이벤트</h1>
+
+<form>
+     <select name="job">
+       <option value="0">--직업 선택--</option>
+	   <option value="회사원">회사원</option>
+	   <option value="개발자">개발자</option>
+	   <option value="전문직">전문직</option>
+	   <option value="회계사">회계사</option>
+	   <option value="의사">의사</option>	
+	</select>
+</form>	
+<div id="result"></div>
+</body>
+</html>
+
+
+
+
+
+

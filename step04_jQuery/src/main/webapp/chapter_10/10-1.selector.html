@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		//$("*").css("color","red");	//*: 모든것
+		
+		//css 에서는 font-family, javaScript에서는 fontFamily
+		//$("li").css("fontFamily","굴림체");
+		
+		//$("h3,h4").css("border","red 5px double");
+		
+		//하나의 element에 여러개 css 적용 - 메소드 체인 문법
+		/* $("h3")
+		.css("color","white")
+		.css("backgroundColor","red"); */
+		
+		//하나의 element에 여러개 css 적용 - css({property:value, property:value ...)})
+		//$("h3").css({color:"blue", backgroundColor:"pink", border:"3px dotted orange"});
+	
+		//css의 속성명을 - 사용하려면 반드시 " " 묶는다
+		//$("h3").css({"color":"blue", "background-color":"pink", "border":"3px dotted orange"});
+		
+		
+		//아이디로 찾기 # = id
+		//$("#tag").css("textDecoration","underline");
+		
+		//클래스로 찾기 .
+		//$(".div").css({border:"dashed 3px orange"});
+		
+		//하위 element 찾기
+		//$("div ol li").css("color","red");
+		//$("div ol li:eq(0)").css("color","red");
+		//$("div ol li:gt(1)").css("color","red");
+		//$("div ol li:lt(2)").css("color","red");
+		//$("div ol li:odd").css("color","red");
+		//$("div ol li:even").css("color","red");
+		//$("div ol li:last)").css("color","red");
+		//$("div ol li:not(:last)").css("color","red");
+	});
+	
+</script>
+
+</head>
+<body>
+	
+<h3>jQuery 기본 selector</h3>
+<h4>웹 프로그래밍</h4>
+<div class="div">
+	<ol>
+     	<li>jsp</li>
+		<li id="tag">javaScript</li>
+		<li>jQuery</li>
+		<li>Ajax</li>
+	</ol>
+</div>
+	
+
+</body>
+</html>

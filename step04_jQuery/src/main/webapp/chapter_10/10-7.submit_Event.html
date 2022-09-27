@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script src="../js/jquery-3.6.1.min.js"></script>
+
+<script>
+	$(function(){
+		$("#form").submit(function(){
+			//아이디와 비밀번호 유효성 체크
+			if($("#id").val()==""){
+				alert("아이디를 입력하세요");
+				$("#id").focus();
+				return false;
+			} else if($("#pwd").val()==""){
+				alert("비밀번호를 입력하세요");
+				$("#pwd").focus();
+				return false;
+			}
+		});
+		
+		$(":reset").click(function(){//type="reset"
+			alert("모든 데이터 초기화");
+			$("#id").focus();
+		});
+	});
+	
+</script>
+</head>
+<body>
+<h1>submit 이벤트</h1>
+
+<form id="form" name="fotm" action="http://www.daum.net">
+    아이디 : <input type="text" id="id" name="id"/> <br>
+   비밀번호 : <input type="text" id="pwd" name="pwd"/> <br>
+   <input type="submit" value="로그인"/>
+    <input type="reset" value="취소"/>
+ </form>	
+
+</body>
+</html>
+
+
+
+
+
+
