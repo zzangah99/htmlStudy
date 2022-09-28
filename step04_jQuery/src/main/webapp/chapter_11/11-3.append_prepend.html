@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	img{width:50px;height:40px}
+</style>
+ <script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(function(){
+		let color = ["red","orange","skyblue","blue"];
+		
+		//h3 태그에 순서대로 바탕색을 변경한다
+		$("h3").each(function(i,item){
+			$(this).css("backgroundColor", color[i]);
+		});
+		
+		//prepend, append에는 자식 노드로 추가되고
+		//before, after에는 형제 노드로 추가된다
+		let img = "<img src='img/jquery.jpg'>";
+		$("#pre").click(function(){
+			$(".a").prepend(img);
+		});
+		
+		$("#app").click(function(){
+			$(".b").append(img);
+		});
+		
+		$("#before").click(function(){
+			$(".c").before(img);
+		});
+		
+		$("#after").click(function(){
+			$(".d").after(img);
+		});
+	});
+</script>
+
+</head>
+<body>
+	<h1>DOM 조작 - ADD</h1>
+	<input type="button" id="pre" value="prepend"/>
+	<input type="button" id="app" value="append"/>
+	
+    <input type="button" id="before" value="before"/>
+	<input type="button" id="after" value="after"/>
+	
+	<h3 class="a">prepend 영역</h3>
+	<h3 class="b">append 영역</h3>
+	<h3 class="c">before 영역</h3>
+	<h3 class="d">after 영역</h3>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	div#bigImage{border:1px solid red;width:200px;height:200px;}
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("img").attr({width:80, height:120});
+		
+		$("div#product>img")
+		.hover(function(){
+				let imgSrc = $(this).attr("src");
+				
+				//div 가로 , 세로
+				let w = $("#bigImage").css("width");
+				let y = $("#bigImage").css("height");
+				
+				let img = `<img src='${imgSrc}' width='${w}' height='${y}'>`;
+				$("#bigImage").html(img);
+			}, function(){
+				$("#bigImage>img").remove();
+			});	//mouseover, mouseout
+	});
+</script>
+</head>
+<body>
+	
+<div id="product">
+    <img src="img/android.jpg" />
+    <img src="img/spring.jpg" />
+    <img src="img/unity.jpg" />  
+	  
+    <div id="bigImage"> </div>
+</div>
+</body>
+</html>

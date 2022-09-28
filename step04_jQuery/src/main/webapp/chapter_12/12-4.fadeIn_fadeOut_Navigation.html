@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	a{text-decoration:none}
+	.menu .subMenu{display:none;}
+	.sub{display: none;}
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".menu li").hover(
+				function(){
+					$(">ul", this).fadeIn(); //"" 안에 this를 쓸 순 없기 때문에 두번째 인수로 this를 준다
+				},
+				function(){
+					$(">ul", this).fadeOut(1000);
+				}
+		);
+	});
+</script>
+</head>
+<body>
+
+<h4>fadeIn() , fadeOut()을 이용한 navigation</h4>
+   <div id="NAVI">
+			<ul class="menu">	
+				<li>
+					<a href="#">Java programming</a>
+					<ul class="subMenu">
+						<li>
+							<a href="#">Java</a>
+							<ul class="sub">
+									<li><a href="#">abstract</a></li>
+									<li><a href="#">interface</a></li>
+									<li><a href="#">inheritance</a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#">Jsp</a>
+								<ul class="sub">
+									<li><a href="#">request</a></li>
+									<li><a href="#">response</a></li>
+									<li><a href="#">session</a></li>
+									<li><a href="#">application</a></li>
+								</ul>
+						</li>
+						
+						<li>
+							<a href="#">Android</a>
+							   <ul class="sub">
+									<li><a href="#">geolocation</a></li>
+									<li><a href="#">network</a></li>
+								</ul>
+						</li>
+					</ul>
+				</li>
+		</ul>
+</div>
+
+</body>
+
+</html>

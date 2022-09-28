@@ -1,40 +1,55 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
-		<style>
-             button { margin: 10px;}
-            
-            div {
-                color: blue;
-                font-weight: bold;
-            }
-            
-            span {
-                color: red;
-            }
-        </style>
-        <script src="../lib/jquery-1.11.1.min.js"></script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+button {
+	margin: 10px;
+}
 
-		 <script>
+div {
+	color: blue;
+	font-weight: bold;
+}
 
-           
-        </script>
-        
-    </head>
-    <body>
-    	<h1>trigger 함수 </h1>
-        <button>Button #1</button>
-        <button>Button #2</button>
-        <div>
-            <span>0</span>
-            Button #1 clicks.
-        </div>
-        <div>
-            <span>0</span>
-            Button #2 clicks.
-        </div>
-       
-    </body>
+span {
+	color: red;
+}
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(function(){
+		$("button:first").click(function(){
+			increment($("span:first"));
+		});
+		
+		$("button:last").click(function(){
+			increment($("span:last"));
+			
+			//$(selector).trigger("이벤트종류") : 특정 이벤트를 강제로 호출(selector가 가지고 잇는 이벤트를 강제로 호출)
+			$("button:first").trigger("click");
+		});
+		
+		//숫자를 증가시키는 함수
+		function increment(obj){ //obj는 span 대상 전달
+			let v = parseInt(obj.text())+1;	 //.text() 는 문자열
+			obj.text(v);
+		}
+	});
+</script>
+
+</head>
+<body>
+	<h1>trigger 함수</h1>
+	<button>Button #1</button>
+	<button>Button #2</button>
+	<div>
+		<span>0</span> Button #1 clicks.
+	</div>
+	<div>
+		<span>0</span> Button #2 clicks.
+	</div>
+
+</body>
 </html>

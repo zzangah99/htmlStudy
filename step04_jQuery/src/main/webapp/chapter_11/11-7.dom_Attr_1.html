@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/* img{width:75px; height:75px;} */
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(function(){
+		//$("img").mouseover(function(){}).mouseout(function(){});
+		//$("img").on("mouseover",function(){}).on("mouseout",function(){});
+		$("img").on({
+			mouseover:function(){
+				//src 정보 가져오기
+				let nowSrc = $(this).attr("src");
+				console.log(nowSrc);
+				
+				//현재 크기
+				let w = $(this).attr("width");
+				let h = $(this).attr("height");
+				
+				let cw = $(this).css("width");
+				let ch = $(this).css("height");
+				
+				console.log("w="+w +" , " + "h="+h +" , " + "cw="+cw +" , " + "ch="+ch +" , ");
+				
+				//src 이미지 변경
+				//$(this).attr("src","img/star.png");
+				
+				//이미지 크기 변경
+				/* $(this).attr("width","");
+				$(this).attr("height","");
+				$(this).attr().attr().attr(); */
+				
+				$(this).attr({
+					src: "img/star.png",
+					width: w*2,
+					height: h*2
+				})
+			}, 
+			mouseout:function(){
+				//이미지와 크기 변경
+				$(this).attr("src",function(index, currentSrc){//두번째 인수(currentSrc)는 "src"의 값을 가져와준다
+					//기능
+					console.log(index + " = " + currentSrc);
+					return "img/heart.png";
+				})
+				.attr("width", function(index, currentW){
+					console.log(index + " = " + currentW);
+					return currentW/2;
+				})
+				.attr("height", function(index, currentH){
+					console.log(index + " = " + currentH);
+					return currentH/2;
+				});
+			}
+		});
+	});
+</script>
+</head>
+<body>
+<h1>Dom요소 속성 추가 </h1>
+<img src="img/heart.png" id="img" width="75" height="75"/>
+
+</body>
+</html>

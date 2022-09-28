@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	#prev, #mainPage, #next{float:left}
+	#mainPage{width:100px; overflow:hidden; }
+	#page{width:500px}
+	img{ width:100px ; height:100px;}
+	a{text-decoration:none ; }
+</style>
+
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(function(){
+		let count = 1;
+		$("#prev").click(function(){
+			if(count<=1){
+				alert("이전으로 넘어갈 수 없습니다");
+			} else {
+				$("#page").animate({marginLeft:"+=100px"},500);
+				count--;
+			}
+		});
+		
+		$("#next").click(function(){
+			if(count>4){
+				alert("다음으로 넘어갈 수 없습니다");
+			}else {
+				$("#page").animate({marginLeft:"-=100px"},500);
+				count++;
+			}
+		});
+		
+		
+		/* $("#prev").click(function(){
+			if($("#page").css("marginLeft")>="0px"){
+				alert("이전으로 넘어갈 수 없습니다");
+			} else {
+				$("#page").animate({marginLeft:"+=100px"},500);
+			}
+			console.log($("#page").css("marginLeft"));
+		});
+		
+		$("#next").click(function(){
+			if($("#page").css("marginLeft")<="-400px"){
+				alert("다음으로 넘어갈 수 없습니다");
+			}else {
+				$("#page").animate({marginLeft:"-=100px"},500);
+			}
+			console.log($("#page").css("marginLeft"));
+		}); */
+		
+		
+	})
+</script>
+</head>
+<body>
+
+<h1>animate 효과</h1>
+   <div id="allPage">
+	 <a href="#" id="prev">이전&nbsp;&nbsp;&nbsp;</a>
+	<div id="mainPage">
+		<div id="page">
+		 <img src="img/a.jpg"/><img src="img/b.jpg"/><img src="img/c.jpg"/><img src="img/d.jpg"/><img src="img/e.jpg"/>
+	    </div>
+	</div>
+	<a href="#" id="next">&nbsp;&nbsp;&nbsp;다음</a>
+  </div>
+</body>
+
+</html>

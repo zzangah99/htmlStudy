@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	a{text-decoration:none}
+</style>
+ <script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+  $(function(){
+	  $("#show").click(function(){
+		  //$("img").show();
+			$("img").show(1000, function(){//1초 
+			$(this).attr("src","img/jquery.jpg");
+		 	$(this).css("border","5px red double");
+		 });	
+	  });
+	  
+	  $("#hide").click(function(){
+		  $("img").hide(2000, function(){
+			  $(this).attr("src","img/jpup_id.jpg");
+		  }); 
+	  });
+	  
+	  $("#toggle").click(function(){
+		  $("img").toggle(); 
+	  });
+  });
+</script>
+</head>
+<body>
+<div style="text-align: center;">
+<h1>Basic 효과 </h1>
+	<a href="#" id="show">show</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="hide">hide</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="toggle">toggle</a>
+	
+	<hr/>
+	<img src="img/jpup_id.jpg"/>
+</div>
+</body>
+
+
+
+
+</html>

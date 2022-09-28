@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{width:100px; height:100px; background-color:red; position:absolute;}
+	
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(function(){
+		$("#moveRight").on("click",function(){
+			$("img").animate({marginLeft:"+=200px", width:"+=50px", height:"+=50px", opacity:0.5}, 2000, function(){
+				$(this).css("border", "dashed 5px blue");
+				$(this).attr("src","img/e.jpg");
+			});
+		});
+		
+		$("#moveLeft").on("click",function(){
+			$("img").animate({marginLeft:"-=200px", width:"-=50px", height:"-=50px", opacity:1}, 2000, function(){
+				$(this).css("border", "none");
+				$(this).attr("src","img/heart.png");
+			});
+		});
+		
+		$("#divMove").on("click",function(){
+			$("div").animate({left:"200px", opacity:0.2}, 600);
+			$("div").animate({top:"+=300px", opacity:1}, 600);
+			$("div").animate({left:"-=200px", opacity:0.4}, 600);
+			$("div").animate({top:"-=300px", opacity:1}, 600);
+		});
+	})
+</script>
+</head>
+<body>
+
+<h1>animate 효과</h1>
+   <input type="button" value="moveRight" id="moveRight" />
+	<input type="button" value="moveLeft"  id="moveLeft"/>
+	<input type="button" value="움직이기"  id="divMove"/>
+	<p/>
+	<img src="img/heart.png" width="50" height="50"/>
+	<p>
+	<div></div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	a{text-decoration:none;color:red}
+	#tooltip{
+		opacity:0.7; position:absolute;
+		display:none; border-radius:10px;
+		background-color:yellow; padding:5px;
+	}
+
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("a")
+		.hover(
+				function(){
+					$("#tooltip").slideDown(0);
+				}, 
+				function(){
+					$("#tooltip").slideUp(0);
+				})
+		.mousemove(
+				function(){
+					//마우스의 좌표를 구한다
+					let x = event.clientX;
+					let y = event.clientY;
+					
+					//구한 좌표의 위치로 span 이동
+					$("#tooltip").css({left:x+"px", top:y+"px"});
+				});
+	})
+</script>
+</head>
+<body>
+
+<h4>slideDown() , slideUp()을 이용한 tooltip</h4>
+   <h2><a href="#">jQuery란</a> 무엇 인가?</h2>
+	<span id="tooltip">javaScript 라이브러리입니다.</span>
+</body>
+
+</html>

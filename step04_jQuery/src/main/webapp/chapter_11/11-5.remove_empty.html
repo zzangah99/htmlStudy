@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	div { background-color:pink; }
+</style>
+ <script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+	$(function(){
+		//selector가 아예 제거된다
+		$("#removeId").click(function(){
+			$("div").remove();
+			$("div").html("나오니?");
+		});
+		
+		//selector를 비운다(내용을 지운다)
+		$("#emptyId").click(function(){
+			$("div").empty();
+			$("div").html("나오니?");
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>remove() 와 empty()</h1>
+	 <div>
+        <p>JavaScript</p>
+        <p>NodeJs</p>
+    </div>    
+	
+	<input type="button" id="removeId" value="remove" />
+    <input type="button" id="emptyId" value="empty" />
+    
+	
+</body>
+</html>

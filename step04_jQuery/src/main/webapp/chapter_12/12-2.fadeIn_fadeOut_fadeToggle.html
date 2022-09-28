@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	h2{width:300px; height:40px;padding:10px;
+	   background-color:red;color:yellow;display:none}
+	a{text-decoration:none}
+	.test{background-color:blue; color:white; border:5px dotted skyblue;}
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#fadeIn").click(function(){
+			//$("h2").fadeIn();
+			$("h2").fadeIn(2000, function(){
+				$(this).addClass("test");
+			});
+		});
+		
+		$("#fadeOut").click(function(){
+			$("h2").fadeOut(2000);
+		});
+				
+		$("#fadeToggle").click(function(){
+			$("h2").fadeToggle(3000);
+		});
+		
+		$("#fadeTo").click(function(){
+			$("h2").fadeTo(1000,0);
+		});
+	});
+</script>
+
+</head>
+<body>
+<div style="text-align: center;">
+<h1>Fading 효과 </h1>
+	<a href="#" id="fadeIn">fadeIn</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="fadeOut">fadeOut</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="fadeToggle">fadeToggle</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" id="fadeTo">fadeTo</a>
+	<hr/>
+	<div style="text-align: center; display:inline-block;">
+	<h2>Have a Nice Good Day!</h2>
+	</div>
+	<h3>난 어디에 놓일까?</h3>
+</div>
+</body>
+
+
+
+
+</html>

@@ -8,33 +8,37 @@
 <script>
 	$(function(){
 		//주민번호 앞자리, 뒷자리 모두 숫자만 가능 - keyup 발생시 숫자 유무를 체크(숫자가 아니면 마지막 글자를 지운다)
-		$("#jumin1").on("keyup",function(){
-			if(checkNumber($(this).val())){
-				this.value = this.value.substr(0, this.value.length - 1);
-			}
-		});
-		
 		//주민번호 앞자리 keyup 발생할 때 6자리가 되면 커서를 주민번호 뒷자리로 옮긴다
 		$("#jumin1").on("keyup",function(){
-			if($("#jumin1").val().length == 6){
+			checkNumber($(this));
+			if(this.value.length == 6){
 				$("#jumin2").focus();
 			}
 		});
 		
 		
 		//주민번호 뒷자리에서 blur 발생할 때 주민번호 첫글자가 1이면 남자, 2면 여자 성별 체크
-		$("#jumin2").on("blur",function(){
-			if(this.value.substr(0,1) == 1 || this.value.substr(0,1) == 3){
-				$("#man").prop("checked","true");
-			} else $("#woman").prop("checked","true");
+		$("#jumin2")
+		.on("keyup",function(){
+			checkNumber($(this));
+			if(this.value.length == 7){
+				$("#jumin2").blur();
+			}
+		})
+		.on("blur",function(){
+			if(this.value.charAt(0) == 1 || this.value.charAt(0) == 3){
+				$("#man").prop("checked",true);
+			} else $("#woman").prop("checked", true);
 		});
 		
 		
+		//숫자 체크
 		function checkNumber(th){
-			if(isNaN(th)){
-				return true;
+			let v = th.val();
+			if(isNaN(v)){
+				let v2 = v.substr(0, v.length - 1);
+				th.val(v2);
 			}
-			return false;
 		}
 	});
 </script>
