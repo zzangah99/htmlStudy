@@ -36,7 +36,12 @@
 		function checkNumber(th){
 			let v = th.val();
 			if(isNaN(v)){
-				let v2 = v.substr(0, v.length - 1);
+				//한글은 자음,모음을 조합해서 한 문자로 만드려는 성질이 있어서 한 번 지워도 메모리가 기억되어 있어서 한글을 지우고 다시 한글을 입력하면 지워지지 않는 현상
+				//커서를 잃어버리면 그 한글이 조합되지 않았어도 문자로 처리가 끝나기 때문에 blur() 이벤트로 버그를 완료시켜준다
+				let v2 = v.substr(0, v.length - 1);	
+				
+				th.blur();
+				th.focus();
 				th.val(v2);
 			}
 		}

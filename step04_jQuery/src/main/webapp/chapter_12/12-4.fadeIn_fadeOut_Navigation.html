@@ -11,14 +11,24 @@
 <script src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$(".menu li").hover(
+		/* $(".menu li").hover(
 				function(){
 					$(">ul", this).fadeIn(); //"" 안에 this를 쓸 순 없기 때문에 두번째 인수로 this를 준다
 				},
 				function(){
 					$(">ul", this).fadeOut(1000);
 				}
-		);
+		); */
+		
+		$(".menu a").click(function(){
+			var submenu = $(this).next("ul");//next()는 nextSibling 역할
+			
+			if(submenu.is(":visible")){
+				submenu.slideUp();//감추기
+			}else{
+				submenu.slideDown();
+			}
+		});
 	});
 </script>
 </head>

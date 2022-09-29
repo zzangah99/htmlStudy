@@ -35,7 +35,7 @@
 		
 		
 		/* $("#prev").click(function(){
-			if($("#page").css("marginLeft")>="0px"){
+			if($("#page").css("marginLeft")=="0px"){
 				alert("이전으로 넘어갈 수 없습니다");
 			} else {
 				$("#page").animate({marginLeft:"+=100px"},500);
@@ -44,7 +44,7 @@
 		});
 		
 		$("#next").click(function(){
-			if($("#page").css("marginLeft")<="-400px"){
+			if($("#page").css("marginLeft")=="-400px"){
 				alert("다음으로 넘어갈 수 없습니다");
 			}else {
 				$("#page").animate({marginLeft:"-=100px"},500);
