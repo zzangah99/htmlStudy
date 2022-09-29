@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		/*
+			sessionStorage 영역에 있는 정보 가져오기
+		*/
+		function getInfo(){
+			let len = sessionStorage.length;
+			let str = "저장된 개수 : " + len + "<br>";
+			
+			for(let i=0; i<len; i++){
+				//key 찾기
+				let key = sessionStorage.key(i);
+				let value = sessionStorage.getItem(key);
+				
+				str += key + " : " + value + "<br>";
+			}
+			//div 영역에 추가
+			$("#result").html(str);
+		}
+		
+		getInfo();
+	})
+</script>
+</head>
+<body>
+<h1>sessionStorage 정보</h1>
+<div id="result"></div>
+</body>
+</html>

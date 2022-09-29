@@ -4,16 +4,69 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
- div{width:300px; height:100px ; border: 1px red solid;}
+ div{width:300px; height:100px ; border: 1px red solid; overflow:auto;}
 </style>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
-
+	$(function(){
+		$("#btnSave").click(function(){
+			let key = $("#s_key").val();
+			let value = $("#s_value").val();
+			
+			if(key=="" || value==""){
+				alert("key와 value를 입력해주세요");
+				return;
+			}
+			
+			//sessionStorage 영역 저장
+			sessionStorage.setItem(key, value);
+			
+			//text 내용 비우기
+			$("#s_key").val("");
+			$("#s_value").val("");
+			$("#s_key").focus();
+			
+			getInfo();
+		});
+		
+		
+		$("#btnClear").click(function(){
+			//모두 지우기
+			//sessionStorage.clear();
+			
+			let key = prompt("삭제할 key?");
+			sessionStorage.removeItem(key);
+			
+			getInfo();
+		});
+		
+		
+		/*
+			sessionStorage 영역에 있는 정보 가져오기
+		*/
+		function getInfo(){
+			let len = sessionStorage.length;
+			let str = "저장된 개수 : " + len + "<br>";
+			
+			for(let i=0; i<len; i++){
+				//key 찾기
+				let key = sessionStorage.key(i);
+				let value = sessionStorage.getItem(key);
+				
+				str += key + " : " + value + "<br>";
+			}
+			//div 영역에 추가
+			$("#result").html(str);
+		}
+		
+		getInfo();
+	})
    
 </script>
 
 </head>
 <body>
-<h1> sessionStorage Test </h1>
+<h1> sessionStorage Test - 브라우저 시작 ~ 종료될 때까지 유지</h1>
 <form>
   key : <input type="text" name="s_key" id="s_key"/>
   value : <input type="text" name="s_value" id="s_value"/>
@@ -24,7 +77,7 @@
  <div id="result"></div>
 </form>
 
-
+<a href="ex01_sessionResult.html">session 정보 확인하러 가기</a>
 
 </body>
 </html>
