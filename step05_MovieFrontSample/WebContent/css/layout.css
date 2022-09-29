@@ -84,7 +84,7 @@ nav {
 	padding: 39px;
 	background: #80027f url("img/intro_background.png") repeat-x;
 	height : 50px;
-	width: 100%
+	width: 100%;
 	
 	/* Background-size not implemented yet */
 	-webkit-background-size: 100%;

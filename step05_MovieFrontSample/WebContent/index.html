@@ -19,9 +19,21 @@ table caption{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script type="text/javascript">
-
+	$(function(){
+		//미리보기 영상 재생
+		$("button[name=vplay]").on("click",function(){
+			$("video").attr("src",$(this).val());
+		});
+		
+		
+		//찜하기
+		$("button[name=cartinsert]").on("click",function(){
+			localStorage.setItem($(this).attr("id"), $(this).val());
+		});
+	})
 </script>
 </head>
+
 <body>
 	<header>
 		<h1 align="center">KOSTA MOVIE</h1>
@@ -43,7 +55,7 @@ table caption{
 	<div id="content">
 			<article class="blogPost">
 				<section>
-					<video width="400" height="300" controls="controls" poster="img/poster.jpg" id="video" >
+					<video width="400" height="300" controls="controls" poster="img/poster.jpg" id="video"  autoplay>
 					</video>
 				</section>
 				<section>
