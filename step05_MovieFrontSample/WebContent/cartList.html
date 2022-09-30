@@ -20,13 +20,14 @@ a{text-decoration: none}
 		getInfo();
 		
 		//삭제
+		//제일 쉬운 방법은 button을 등록할 때 버튼의 id를 key값으로 주고 삭제할 때 this의 id를 storage의 key로 쓰면 된다
 		$(document).on("click",":button",function(){
-			let tr = this.parentNode.parentNode; //button -> td -> tr
-			tr.parentNode.removeChild(tr);
+			let key = $(this).parent().parent().find("td:eq(1)").text(); //button -> td -> tr -> 두번째 td
 			
-			let key = tr.firstChild.nextSibling.innerHTML;
 			console.log(key);
 			localStorage.removeItem(key);
+			
+			getInfo();
 		});
 		
 		
@@ -42,7 +43,7 @@ a{text-decoration: none}
 				let value = localStorage.getItem(key);
 				let vArr = value.split(",");
 				
-				str += `<tr><td><img src='${vArr[1]}' style='width:140px; height:180px'></td><td>${key}</td><td>${vArr[0]}</td><td>${vArr[2]}</td><td><input type='button' value='삭제'></td></td>`;
+				str += `<tr><td><img src='${vArr[1]}' class="poster"></td><td>${key}</td><td>${vArr[0]}</td><td>${vArr[2]}</td><td><input type='button' value='삭제'></td></td>`;
 				price += parseInt(vArr[2]);
 			}
 			

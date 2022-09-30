@@ -22,8 +22,16 @@ table caption{
 	$(function(){
 		//미리보기 영상 재생
 		$("button[name=vplay]").on("click",function(){
-			$("video").attr("src",$(this).val());
+			
+			//jquery 기반
+			$("video").attr({src:$(this).val(), autoplay:"autoplay"});
+			//$("video").trigger("play"); //video가 가지고 있는 play라는 함수(기능)을 호출해줘야 한다
+			
+			//javascript 기반
+			/* document.getElementById("video").src = this.value();
+			document.getElementById("video").play(); */
 		});
+		
 		
 		
 		//찜하기
@@ -55,7 +63,7 @@ table caption{
 	<div id="content">
 			<article class="blogPost">
 				<section>
-					<video width="400" height="300" controls="controls" poster="img/poster.jpg" id="video"  autoplay>
+					<video width="400" height="300" controls="controls" poster="img/poster.jpg" id="video" >
 					</video>
 				</section>
 				<section>
