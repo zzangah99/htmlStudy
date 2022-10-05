@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>step08_InitParam</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 프로젝트 전체 영역에서 공유해서 사용할 수 있는 init-param 설정 -->
+  <context-param>
+  	<param-name>message</param-name>
+  	<param-value>언제끝나</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>driverName</param-name>
+  	<param-value>jdbc.odbc.OracleDriver</param-value>
+  </context-param>
+  
+  <servlet>
+  	<servlet-name>initParamTest</servlet-name>
+  	<servlet-class>ex1005.servlet.InitParamTestServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>initParamTest</servlet-name>
+  	<url-pattern>/initTest</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <!-- initparam -->
+  <servlet>
+  	<servlet-name>initParamServlet</servlet-name>
+  	<servlet-class>ex1005.servlet.InitParamServlet</servlet-class>
+  	
+  	<init-param>
+  		<param-name>dbId</param-name>
+  		<param-value>chun</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>dbPwd</param-name>
+  		<param-value>1111</param-value>
+  	</init-param>
+  	
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>initParamServlet</servlet-name>
+  	<url-pattern>/initParam</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
