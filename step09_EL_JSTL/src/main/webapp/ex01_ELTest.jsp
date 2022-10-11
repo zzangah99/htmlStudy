@@ -2,6 +2,7 @@
 <%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,9 +84,9 @@ hobbys(application) : ${applicationScope.hobbys} / ${hobbys} <hr>
 <jsp:useBean id="p" class = "ex1006.el.Product"/>
 상품코드 : <%=p.getCode() %> /${p.code}<br> <!-- p.getCode() 호출 -->
 상품이름 : ${p.name}<br>
-가격: ${p.price }<br>
+가격: <fmt:formatNumber value="${p.price }"/><br> <!-- taglib:fmt 최상단에 태그 필수 -->
 수량: ${p.qty }<br>
-총금액(가격*수량) : ${p.price * p.qty }원<br>
+총금액(가격*수량) : <fmt:formatNumber value="${p.price * p.qty }"/>원<br>
 
 </h4>
 </body>
