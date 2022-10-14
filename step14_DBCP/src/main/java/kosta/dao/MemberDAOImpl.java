@@ -158,7 +158,7 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, "%" + keyWord + "%");
+			ps.setString(1, "%" + keyWord + "%"); //setString 하면 '' 으로 묶이기 때문에 sql문에 where 뒷부분을 ? 로 바로 넣지 않고 switch문으로 연결해준 것
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>
+
+  <a href="selectState?empno=7900">요청1 - Statement</a> <p>
+  <a href="selectPreState?empno=7900">요청2 - PreparedStatement</a> <p>
+</h2>
+
+<hr color="red">]
+<h3>Statement인 경우</h3>
+<form action="selectState">
+	입력 <input type="text" name="empno">
+		<input type="submit" value="statement전송">
+</form>
+
+
+<hr>
+<h3>PreparedStatement인 경우</h3>
+<form action="selectPreState">
+	입력 <input type="text" name="empno">
+		<input type="submit" value="sPreparedStatement전송">
+</form>
+
+</body>
+</html>
