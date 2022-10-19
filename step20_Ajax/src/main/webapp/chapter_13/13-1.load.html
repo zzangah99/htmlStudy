@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>	
+<head>
+	<meta  charset="UTF-8"/>
+    <title>load 메서드</title>
+	<style>
+		div{width:300px;height:200px;
+		    background-color:yellow; 
+		}
+		
+	</style>
+     <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+     <script>
+     	$(function(){
+     		/*
+     			ajax : 서버와 통신 하면서 새로고침없이 화면의 일부분 갱신
+     				   원래 javaScript + XML 이용
+     				   현재 jQuery + JSON 많이 이용
+     				   
+     				 : 동작원리
+     				 	1) 이벤트 발생 -> 2) XMLHttpRequest 생성 -> open() --> send()
+     				 		--> onreadystatechange=function(){}을 이용해서 서버가 보내온 데이터를 받아서 화면에 적용
+     				 		
+     				 	* 이러한 과정을 jQuery를 이용하면 이미 만들어놓은 함수를 호출하면 알아서 해준다
+     		*/
+     		
+     		//load() 함수 : 서버가 보내온 내용을 그대로 화면에 반영할 때
+     		$("#btn").click(function(){
+     			$("#display").load("13-1.serverPage.html");
+     		});
+     	})
+     </script>
+   
+</head>
+<body>
+	<h3>소스 13-1 $(selector).load(url , [params] , [callbackFun]) 함수 </h3>
+    <input type="button" id="btn" value="load함수 요청" />
+    <div id="display">요청결과 출력영역</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

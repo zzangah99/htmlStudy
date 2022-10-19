@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>JSON파일 로드하기</title>
+		<style>
+		div{width:300px;height:200px;
+		    background-color:yellow; 
+			padding:5px;
+		}
+		table{border:inset 3px red}
+		th,td{text-align:center;border:solid 1px gray}
+	</style>
+    <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+    <script>
+    	$(function(){
+    		$("#btn").click(function(){
+    			$.getJSON("13-3.serverPage.json", function(result) {
+    				//alert("react" + result);
+    				
+    				let str = "<table><tr><th>순서</th><th>이름</th><th>나이</th><th>주소</th></tr>"
+    				$.each(result, function(index, item){
+    					//alert(index + " = " + item.name + " , " + item.age);
+    					str += "<tr>";
+    					str+="<td>"+(index+1)+"</td>";
+    					str+="<td>"+item.name+"</td>";
+    					str+="<td>"+item.age+"</td>";
+    					str+="<td>"+item.addr+"</td>";
+    					str+="</tr>";
+    				});
+    				str += "</table>";
+    				
+    				//div 영역에 추가한다
+    				$("#display").html(str);
+    			});
+    		});
+    	})
+    </script>
+    
+</head>
+<body>
+    <h3> $.getJSON(url [ ,success]) 함수 </h3>
+    <input type="button" id="btn" value="getJSON요청" />
+    <div id="display">요청결과 출력영역</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

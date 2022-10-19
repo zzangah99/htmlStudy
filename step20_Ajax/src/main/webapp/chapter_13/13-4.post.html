@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>post() 메소드</title>		
+    <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		$("#book").change(function(){
+    			if(this.selectedIndex == 0){//java 속성 메소드라 this로 쓴다
+    				return;
+    			}
+    			
+    			let param = {book:$(this).val()};
+    			$.post("../ajax", param, function(result){ //콜백함수 function에 ajax 결과가 들어온다
+    				//alert(result);
+    				let img = `<img src="images/${result}">`;
+    				$("#display").html(img);
+    			})
+    			//$.get 이면 서블릿에서 doGet을 오버라이딩
+    		});
+    	})
+    </script>    
+       
+</head>
+<body>
+    <h3> $.post(url [,data] [,success] [,dataType]) 함수 </h3>
+    <h3> $.get(url [,data] [,success] [,dataType]) 함수 </h3>
+	
+   <form>
+   	교재 선택 : 
+	<select name="book" id="book">
+		<option>--선택 --</option>
+		<option value="0">spring</option>
+		<option value="1">Android</option>
+		<option value="2">jQuery</option>
+		<option value="3">javaScript</option>
+	</select>
+   </form>
+    <div id="display"></div>
+</body>
+</html>
