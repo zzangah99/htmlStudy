@@ -36,7 +36,7 @@
 						  str += "<td>"+ item.age +"</td>";
 						  str += "<td>"+ item.tel +"</td>";
 						  str += "<td>"+ item.addr +"</td>";
-						  str += "<td><input type='button' value='삭제'></td>";
+						  str += `<td><input type='button' value='삭제' id='${item.id}'></td>`;
 						  str += "</tr>";
 					  })
 					  
@@ -162,7 +162,7 @@
 				  url:"../deleteServlet", //서버의 주소
 				  type:"post", //요청 방식(method 방식 - get | post | put | delete ...)
 				  dataType:"text", //서버가 보내온 데이터 타입(text | html | xml | json)
-				  data:{id:$(this).parent().parent().children("td:eq(1)").text()}, //폼의 데이터를 전송
+				  data:{id:$(this).attr("id")}, //폼의 데이터를 전송
 				  success:function(result){
 					  selectAll();
 					  //$(this).parent().parent().remove();
