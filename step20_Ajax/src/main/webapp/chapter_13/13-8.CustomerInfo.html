@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,10 +13,170 @@
  
 </style>
 
-<script type="text/javascript" src="../lib/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 
 <script type="text/javascript">
-  
+  $(function(){
+	  //전체검색
+	  function selectAll(){
+		  $.ajax({
+				  url:"../selectAllServlet", //서버의 주소
+				  type:"post", //요청 방식(method 방식 - get | post | put | delete ...)
+				  dataType:"json", //서버가 보내온 데이터 타입(text | html | xml | json)
+				  //data:{keyWord:$(this).val()}, //서버에게 보낼 parameter 정보
+				  success:function(result){
+					  //alert(result);
+					  
+					  let str = "";
+					  $.each(result, function(index, item){
+						  str += "<tr>";
+						  str += "<td>"+ (index+1) +"</td>";
+						  str += "<td><a href='#'>"+ item.id +"</a></td>";
+						  str += "<td>"+ item.name +"</td>";
+						  str += "<td>"+ item.age +"</td>";
+						  str += "<td>"+ item.tel +"</td>";
+						  str += "<td>"+ item.addr +"</td>";
+						  str += "<td><input type='button' value='삭제'></td>";
+						  str += "</tr>";
+					  })
+					  
+					  $("#listTable tr:gt(0)").remove();
+					  $("#listTable tr:eq(0)").after(str);
+				  },
+				  error:function(err){ //서버의 요청 결과가 실패했을 때 콜백 함수
+					  alert(err+" => 오류발생");
+				  }
+			  });
+	  }
+	  
+	  selectAll();
+	  
+	  /////////////////////////////////////////////////////////////////////////////////////////
+	  //아이디 중복 체크
+	  $("#id").keyup(function(){
+		  if($(this).val()==""){
+			  $("span").html("중복 결과 여부");
+			  return;
+		  }
+		  
+		  $.ajax({
+			  url:"../idCheckServlet", //서버의 주소
+			  type:"post", //요청 방식(method 방식 - get | post | put | delete ...)
+			  dataType:"text", //서버가 보내온 데이터 타입(text | html | xml | json)
+			  data:{id:$(this).val()}, //서버에게 보낼 parameter 정보
+			  success:function(result){
+				  //alert(result);		
+				  
+				  $("span").html(`<b>${result}</b>`);
+			  },
+			  error:function(err){ //서버의 요청 결과가 실패했을 때 콜백 함수
+				  alert(err+" => 오류발생");
+			  }
+		  });
+	  });
+	  
+	  /////////////////////////////////////////////////////////////////////////////////////////
+	  //가입하기
+	  $("#btn").click(function(){	
+		  let state = true; //true일 때 ajax 실행하고, false일 때 실행하지 않는다
+		  
+		  //ajax 실행 전에 text 박스의 값 유무 체크
+		  $("input[type=text]").each(function(index, item){
+				if($(this).val()==""){
+					alert("모든 정보를 입력하세요");
+					$(this).focus();
+					state = false;
+					
+					return false;//each 함수를 빠져나간다
+								 //each는 기본적으로 return true를 받으므로 return;만 쓰면 각 function 하나만 빠져나간다. each의 콜백함수는 false를 만나야 break 된다
+								 //일반적인 함수를 빠져나가라는 return; 과 다르다
+				}  
+		  })
+		  
+		  
+		  let address = "../joinServlet"
+		  if(state){
+			  //수정하기
+			  if($(this).val() == "수정하기"){
+				  address = "../updateServlet";
+				  
+				  $("#btn").val("가입하기");
+				  $("span").show();
+				  $("#id").removeAttr("readonly");
+			  }
+			  
+			  
+			  $.ajax({
+				  url:address, //서버의 주소
+				  type:"post", //요청 방식(method 방식 - get | post | put | delete ...)
+				  dataType:"text", //서버가 보내온 데이터 타입(text | html | xml | json)
+				  data:$("#inForm").serialize(), //폼의 데이터를 전송
+				  success:function(result){
+					  //alert(result);	
+					  if(result > 0){
+						  $("[type=text]").val("");
+						  $("span").text("");
+						  selectAll();
+					  }else{
+						  alert("실패하였습니다");
+					  }
+				  },
+				  error:function(err){ //서버의 요청 결과가 실패했을 때 콜백 함수
+					  alert(err+" => 오류발생");
+				  }
+			  });
+		  }
+	  });
+	  
+	  
+	  /////////////////////////////////////////////////////////////////////////////////////////
+	  //아이디를 클릭했을 때 값을 폼에 넣기
+	  $(document).on("click","a", function(){
+		  let id = $(this).text();
+		  let nameE = $(this).parent().next();
+		  let ageE = nameE.next();
+		  let telE = ageE.next();
+		  let addrE = telE.next();
+		  
+		  $("#id").val(id);
+		  $("#name").val(nameE.text());
+		  $("#age").val(ageE.text());
+		  $("#tel").val(telE.text());
+		  $("#addr").val(addrE.text());
+		  
+		  //id 박스 비활성화
+		  $("#id").attr("readonly", "readonly");
+		  
+		  //span 태그 감추기
+		  $("span").hide();
+		  
+		  //btn 버튼 글씨 변경
+		  $("#btn").val("수정하기");
+	  })
+	  
+	  
+	  //삭제하기
+	  $(document).on("click","[value=삭제]", function(){
+		  if(confirm("삭제하시겠습니까?")){
+			  $.ajax({
+				  url:"../deleteServlet", //서버의 주소
+				  type:"post", //요청 방식(method 방식 - get | post | put | delete ...)
+				  dataType:"text", //서버가 보내온 데이터 타입(text | html | xml | json)
+				  data:{id:$(this).parent().parent().children("td:eq(1)").text()}, //폼의 데이터를 전송
+				  success:function(result){
+					  selectAll();
+					  //$(this).parent().parent().remove();
+					  alert(result);
+				  },
+				  error:function(err){ //서버의 요청 결과가 실패했을 때 콜백 함수
+					  alert(err+" => 오류발생");
+				  }
+			  });
+			 
+		  }
+	  })
+	  
+  })
 
 </script>
 
@@ -47,6 +207,7 @@
 		</td>
 	</tr>
 </table>
+</form>
 <br>
 <hr color="red">
 

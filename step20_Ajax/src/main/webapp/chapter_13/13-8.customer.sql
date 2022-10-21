@@ -10,10 +10,13 @@ CREATE TABLE customer2(
     addr VARCHAR2(50)--고객주소
 )
 
-drop table customer
+drop table customer2;
 
-insert into customer2 values('jang','장희정',20,'02-222-8282','서울시 강남구')
-commit;
+insert into customer2 values('jang','장희정',20,'02-222-8282','서울시 강남구');
+insert into customer2 values('chun','천세륜',24,'02-222-8282','경기도 성남시');
+insert into customer2 values('king','킹',40,'02-222-8282','서울시 관악구');
+insert into customer2 values('queen','퀸',40,'02-222-8282','서울시 용산구');
+commit
 
 
 

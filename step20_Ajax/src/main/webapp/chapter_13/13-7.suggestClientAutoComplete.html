@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<style>
+a {
+	text-decoration: none
+}
+</style>
+<script type="text/javascript">
+	$(function() {
+		$("#keyWord").keyup(function() {
+			if ($(this).val() == "") {
+				$("#suggest").hide();
+				return;
+			}
+
+			$.ajax({
+				url : "../suggestLib", //서버의 주소
+				type : "post", //요청 방식(method 방식 - get | post | put | delete ...)
+				dataType : "json", //서버가 보내온 데이터 타입(text | html | xml | json)
+				data : {
+					keyWord : $(this).val()
+				}, //서버에게 보낼 parameter 정보
+				success : function(result) {
+					$( "#keyWord" ).autocomplete({
+					      source: result
+					    });
+				},
+				error : function(err) { //서버의 요청 결과가 실패했을 때 콜백 함수
+					alert(err + " => 오류발생");
+				}
+			});
+		});
+		
+	})
+</script>
+
+</head>
+<body>
+	<h3>[ Suggest 기능 구현 - lib 사용 & autoComplete]</h3>
+	<form name="search" id="search">
+		<input type="text" name="keyWord" id="keyWord" />
+	</form>
+
+
+
+</body>
+</html>
+
+
+
+
+

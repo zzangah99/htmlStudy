@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,15 +6,56 @@
 <style>
  a{text-decoration: none}
 </style>
- <script type="text/javascript" src="../lib/jquery-1.11.2.min.js"></script>
- 
+ <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+ <script type="text/javascript">
+ 	$(function(){
+ 		$("#keyWord").keyup(function(){
+ 			if($(this).val()==""){
+ 				$("#suggest").hide();
+ 				return;
+ 			}
+ 			
+ 			$.ajax({
+ 				  url:"../suggest", //서버의 주소
+ 				  type:"post", //요청 방식(method 방식 - get | post | put | delete ...)
+ 				  dataType:"text", //서버가 보내온 데이터 타입(text | html | xml | json)
+ 				  data:{keyWord:$(this).val()}, //서버에게 보낼 parameter 정보
+ 				  success:function(result){
+ 					  console.log(result);
+ 					  
+ 					  let rs = result.split("|");
+ 					  let str = ""
+ 					  if(parseInt(rs[0]) > 0){
+ 						  //검색된 단어 있다
+ 						  let word = rs[1].split(",");
+ 						  
+ 					  	  $.each(word,function(index, item){
+ 						  	str += "<a href='#'>"+item + "</a><br>";
+ 					  	  })
+ 					  	  
+ 					  	  $("#suggest").html(str);
+ 					  	  $("#suggest").show();
+ 					  } else{
+ 						  //없다
+ 						  $("#suggest").hide();
+ 						  
+ 					  }
+ 					  
+ 				  },
+ 				  error:function(err){ //서버의 요청 결과가 실패했을 때 콜백 함수
+ 					  alert(err+" => 오류발생");
+ 				  }
+ 			  });
+ 			
+ 		});
+ 	})
+ </script>
 
 </head>
 <body>
 <h3> [ Suggest 기능 구현 ]</h3>	
 <form name="search" id="search">
 	<input type="text" name="keyWord" id="keyWord"/>
-	<input type="button" value="검색"/>	
 </form>
 <!--제시어 단어 출력부분 -->
 <div id="suggest" style="display:none"></div>

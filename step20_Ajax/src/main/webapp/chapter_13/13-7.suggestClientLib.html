@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+a {
+	text-decoration: none
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#keyWord").keyup(function() {
+			if ($(this).val() == "") {
+				$("#suggest").hide();
+				return;
+			}
+
+			$.ajax({
+				url : "../suggestLib", //서버의 주소
+				type : "post", //요청 방식(method 방식 - get | post | put | delete ...)
+				dataType : "json", //서버가 보내온 데이터 타입(text | html | xml | json)
+				data : {
+					keyWord : $(this).val()
+				}, //서버에게 보낼 parameter 정보
+				success : function(result) {
+					console.log(result);
+
+					let str = "";
+						$.each(result, function(index, item) {
+							str += "<a href='#'>" + item + "</a><br>";
+						})
+
+						$("#suggest").html(str);
+						$("#suggest").show();
+				},
+				error : function(err) { //서버의 요청 결과가 실패했을 때 콜백 함수
+					alert(err + " => 오류발생");
+				}
+			});
+		});
+		
+		//a를 클릭했을 때 기능
+		//동적으로 생성된 요소의 이벤트는 on을 써야한다
+		//$(document).on("이벤트종류","selector",function(){})
+		$(document).on("click","a", function(){
+			let t = $(this).text(); //form 요소의 값을 가져올 때만 val()
+			$("#keyWord").val(t); //form 요소에 값을 넣는 것이므로 val()
+			$("#suggest").hide();
+		})
+	})
+</script>
+
+</head>
+<body>
+	<h3>[ Suggest 기능 구현 ]</h3>
+	<form name="search" id="search">
+		<input type="text" name="keyWord" id="keyWord" />
+	</form>
+	<!--제시어 단어 출력부분 -->
+	<div id="suggest" style="display: none"></div>
+
+
+
+</body>
+</html>
+
+
+
+
+
